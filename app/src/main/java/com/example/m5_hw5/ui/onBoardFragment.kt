@@ -1,0 +1,54 @@
+package com.example.m5_hw5.ui
+
+import android.annotation.SuppressLint
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentTransaction
+import com.example.m5_hw5.R
+import com.example.m5_hw5.databinding.FragmentOnBoardBinding
+import com.example.m5_hw5.utils.Mobile
+
+@Suppress("ClassName")
+class onBoardFragment : Fragment() {
+    private lateinit var binding: FragmentOnBoardBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,    ): View {
+
+        binding = FragmentOnBoardBinding.inflate(LayoutInflater.from(context), container, false)
+        initViews()
+
+        return binding.root
+    }
+
+    @SuppressLint("UseRequireInsteadOfGet", "CommitTransaction")
+    private fun initViews() {
+        arguments.let {
+
+        val data = it?.getSerializable("object") as Model
+            binding.tvTitleBoard.text = data.title
+            binding.tvDescBoard.text = data.description
+            data.img?.let { it1 -> binding.imageBoard.setImageResource(it1) }
+            binding.btnStart.isVisible = data.isLast==true
+
+            if (data.isLast==false){
+                data.bg?.let { it1 -> binding.bgConst.setBackgroundResource(it1) }
+            }else{
+                data.bg?.let { it1 -> binding.bgConst.setBackgroundResource(it1) }
+        }
+    }
+
+        binding.btnStart.setOnClickListener {
+            val newFragment: Fragment = InputFragment()
+            val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+            val fragmentManager =
+            fragmentManager
+            fragmentManager!!.beginTransaction().replace(R.id.container, newFragment).commit()
+            Mobile.providePrefs(requireContext()).setBoardingShowed(true)        }
+    }
+}
