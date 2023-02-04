@@ -6,8 +6,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.m5_hw5.R
 import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class BoardAdapter (@ApplicationContext fragment: FragmentActivity): FragmentStateAdapter(fragment) {
+class BoardAdapter @Inject constructor (@ApplicationContext fragment: FragmentActivity): FragmentStateAdapter(fragment) {
     private val listBoarding = arrayOf(        Model(
         R.drawable.bro,            "App work",
         "Work in this application you can register and find the vacancy you need",
@@ -44,5 +45,4 @@ class BoardAdapter (@ApplicationContext fragment: FragmentActivity): FragmentSta
         fragment.arguments = data
                 return fragment
     }
-
 }

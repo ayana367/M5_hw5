@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace 'com.example.m5_hw5'
-    compileSdk 33/
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.m5_hw5"

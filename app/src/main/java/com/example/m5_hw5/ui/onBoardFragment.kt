@@ -10,11 +10,15 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentTransaction
 import com.example.m5_hw5.R
 import com.example.m5_hw5.databinding.FragmentOnBoardBinding
-import com.example.m5_hw5.utils.Mobile
+import com.example.m5_hw5.utils.Preferences
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 @Suppress("ClassName")
 class onBoardFragment : Fragment() {
     private lateinit var binding: FragmentOnBoardBinding
+   @Inject lateinit var preferences: Preferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +53,7 @@ class onBoardFragment : Fragment() {
             val fragmentManager =
             fragmentManager
             fragmentManager!!.beginTransaction().replace(R.id.container, newFragment).commit()
-            Mobile.providePrefs(requireContext()).setBoardingShowed(true)        }
+            preferences.setBoardingShowed(true)
+        }
     }
 }

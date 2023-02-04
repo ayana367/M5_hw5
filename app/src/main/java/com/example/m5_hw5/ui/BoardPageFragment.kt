@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.m5_hw5.R
 import com.example.m5_hw5.databinding.FragmentBoardPageBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BoardPageFragment  : Fragment() {
     private lateinit var binding: FragmentBoardPageBinding
 
